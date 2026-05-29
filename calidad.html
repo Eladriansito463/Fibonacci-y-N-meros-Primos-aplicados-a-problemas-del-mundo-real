@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Primos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <main class="container">
+        <a href="index.html" class="meta-info">← VOLVER AL MENÚ PRINCIPAL</a>
+        
+        <header class="header-proyecto">
+            <h1>Auditoría de Lotes</h1>
+            <p class="meta-info-sub">Control de Calidad con Números Primos</p>
+        </header>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">LED • 01</span>
+            <h2>1. Contexto del Problema</h2>
+            <p>En las fábricas, no se puede revisar cada pieza producida. Para evitar sesgos, los ingenieros seleccionan las piezas cuyos números de serie o lote coinciden con números primos para aplicarles pruebas destructivas de calidad.</p>
+        </section>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">LED • 02</span>
+            <h2>2. Explicación del Algoritmo</h2>
+            <p>El sistema toma el número de pieza y cuenta cuántos divisores exactos tiene. Si los divisores son exactamente 2 (el 1 y sí mismo), marca la pieza como "Crítica para revisión".</p>
+            
+            <div class="contenedor-codigo">
+                <div class="barra-terminal"><span class="titulo-archivo">inspector_primos.js</span></div>
+                <pre><code><span class="keyword">function</span> <span class="function">esPiezaCritica</span>(numeroSerie) {
+    <span class="keyword">if</span> (numeroSerie &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;
+    <span class="keyword">let</span> divisores = <span class="number">0</span>;
+    
+    <span class="comment">// Algoritmo de primalidad por fuerza bruta</span>
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= numeroSerie; i++) {
+        <span class="keyword">if</span> (numeroSerie % i === <span class="number">0</span>) {
+            divisores++; <span class="comment">// Contador de residuos exactos</span>
+        }
+    }
+    <span class="comment">// Si solo tiene 2 divisores (1 y sí mismo) es primo</span>
+    <span class="keyword">return</span> divisores === <span class="number">2</span>;
+}</code></pre>
+            </div>
+        </section>
+
+        <section class="panel-tecnologico simulador-seccion">
+            <span class="panel-numero">RUNNING</span>
+            <h2>⚡ Simulador de Auditoría</h2>
+            <form onsubmit="event.preventDefault(); verificarLotes();">
+                <div class="input-group">
+                    <label>INGRESA LA CANTIDAD DE PIEZAS FABRICADAS:</label>
+                    <input type="number" id="total_piezas" value="10" min="1" required>
+                </div>
+                <button type="submit" class="btn-ejecutar">AUDITAR LOTES</button>
+            </form>
+            <div id="resultado-container2" class="resultado-box hidden">
+                <div class="consola-header">OUTPUT TERMINAL //</div>
+                <div id="resultado-secuencia2" class="salida-datos"></div>
+            </div>
+        </section>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">LED • 03</span>
+            <h2>3. Conclusión</h2>
+            <p>Los números primos ofrecen un patrón pseudoaleatorio perfecto en la naturaleza, garantizando que el muestreo de control de calidad sea imparcial y seguro.</p>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Mixto</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <main class="container">
+        <a href="index.html" class="meta-info">← VOLVER AL MENÚ PRINCIPAL</a>
+        
+        <header class="header-proyecto">
+            <h1>Generador de Tokens</h1>
+            <p class="meta-info-sub">Criptografía con Fibonacci + Primos</p>
+        </header>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">LED • 01</span>
+            <h2>1. Contexto del Problema</h2>
+            <p>Los sistemas bancarios y de servidores necesitan generar contraseñas de un solo uso (Tokens). Este sistema mezcla el crecimiento exponencial de Fibonacci y lo enmascara usando la validación de primalidad.</p>
+        </section>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">LED • 02</span>
+            <h2>2. Explicación del Algoritmo</h2>
+            <p>El algoritmo recibe una "semilla" del usuario. Calcula la posición de Fibonacci para esa semilla, genera un código alfanumérico, y finalmente dictamina si el Token es de Nivel Alto (si su base es prima) o Estándar.</p>
+            
+            <div class="contenedor-codigo">
+                <div class="barra-terminal"><span class="titulo-archivo">auth_token.js</span></div>
+                <pre><code><span class="keyword">function</span> <span class="function">generarToken</span>(semillaUsuario) {
+    <span class="comment">// Extraemos el factor de la serie Fibonacci</span>
+    <span class="keyword">let</span> factorBase = <span class="function">obtenerFibonacci</span>(semillaUsuario);
+    <span class="keyword">let</span> tokenHash = <span class="string">`AUTH-${factorBase * 10}-X9`</span>;
+    
+    <span class="comment">// Verificación cruzada: ¿La base es un número primo?</span>
+    <span class="keyword">let</span> esSeguro = <span class="function">esPrimo</span>(factorBase);
+    
+    <span class="keyword">return</span> {
+        hash: tokenHash,
+        nivelSeguridad: esSeguro ? <span class="string">"ALTO (Primo)"</span> : <span class="string">"ESTÁNDAR"</span>
+    };
+}</code></pre>
+            </div>
+        </section>
+
+        <section class="panel-tecnologico simulador-seccion">
+            <span class="panel-numero">RUNNING</span>
+            <h2>⚡ Generador Criptográfico</h2>
+            <form onsubmit="event.preventDefault(); generarTokenMixto();">
+                <div class="input-group">
+                    <label>INGRESA LA SEMILLA NUMÉRICA DEL USUARIO (1-15):</label>
+                    <input type="number" id="semilla_token" value="5" min="1" max="15" required>
+                </div>
+                <button type="submit" class="btn-ejecutar">GENERAR TOKEN</button>
+            </form>
+            <div id="resultado-container3" class="resultado-box hidden">
+                <div class="consola-header">OUTPUT TERMINAL //</div>
+                <div id="resultado-secuencia3" class="salida-datos"></div>
+            </div>
+        </section>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">LED • 03</span>
+            <h2>3. Conclusión</h2>
+            <p>La combinación de diferentes teoremas matemáticos es la base fundamental del cifrado asimétrico que protege nuestros datos en internet hoy en día.</p>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

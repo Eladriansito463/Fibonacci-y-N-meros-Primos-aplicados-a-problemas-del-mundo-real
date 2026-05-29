@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorro Fibonacci</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <main class="container">
+        <a href="index.html" class="meta-info">← Volver al Menú Principal</a>
+        
+        <header class="header-proyecto">
+            <h1>Ahorro Programado</h1>
+            <p class="meta-info">Problema Real: Proyección Financiera con Fibonacci</p>
+        </header>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">01</span>
+            <h2>1. Contexto del Problema</h2>
+            <p>Muchas personas buscan planes de ahorro progresivos. Este modelo utiliza la secuencia de Fibonacci multiplicada por una base de 100 dólares/pesos para calcular depósitos mensuales que crecen de forma sostenible.</p>
+        </section>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">02</span>
+            <h2>2. Explicación del Algoritmo</h2>
+            <p>Se genera la serie sumando los dos meses anteriores ($F_n = F_{n-1} + F_{n-2}$). El resultado puro (0, 1, 1, 2, 3...) se multiplica por 100 para generar montos financieros reales.</p>
+            
+            <div class="contenedor-codigo">
+                <div class="barra-terminal"><span class="titulo-archivo">ahorro_fibo.js</span></div>
+                <pre><code><span class="keyword">function</span> <span class="function">calcularProyeccion</span>(meses) {
+    <span class="keyword">let</span> a = <span class="number">0</span>, b = <span class="number">1</span>, c;
+    <span class="keyword">let</span> acumulado = <span class="number">0</span>;
+    
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= meses; i++) {
+        <span class="keyword">let</span> deposito = a * <span class="number">100</span>; <span class="comment">// Escalado financiero</span>
+        acumulado += deposito;
+        
+        <span class="comment">// Sucesión de Fibonacci F(n) = F(n-1) + F(n-2)</span>
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    <span class="keyword">return</span> acumulado;
+}</code></pre>
+            </div>
+        </section>
+
+        <section class="panel-tecnologico simulador-seccion">
+            <h2>⚡ Simulador de Ahorro</h2>
+            <form id="form-ahorro" onsubmit="event.preventDefault(); calcularAhorro();">
+                <div class="input-group">
+                    <label>¿CUÁNTOS MESES DESEAS PROYECTAR?</label>
+                    <input type="number" id="meses_ahorrar" value="6" min="1" required>
+                </div>
+                <button type="submit" class="btn-ejecutar">EJECUTAR SIMULACIÓN</button>
+            </form>
+            <div id="resultado-container" class="resultado-box hidden">
+                <div id="resultado-secuencia" class="salida-datos"></div>
+            </div>
+        </section>
+
+        <section class="panel-tecnologico">
+            <span class="panel-numero">03</span>
+            <h2>3. Conclusión</h2>
+            <p>Las matemáticas exponenciales permiten estructurar planes financieros donde el esfuerzo inicial es bajo, pero el rendimiento a mediano plazo crece vertiginosamente.</p>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
